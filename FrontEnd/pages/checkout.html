@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Checkout - Aurum</title>
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/pages.css">
+</head>
+<body class="fade-in">
+  <header>
+    <a href="/" class="logo">Aurum</a>
+    <nav>
+      <form class="search-bar" action="/pages/shop.html" method="GET">
+        <input type="text" name="q" placeholder="Search products..." required>
+        <button type="submit" style="background:transparent; border:none; color:var(--gold); cursor:pointer;">&#x1F50D;</button>
+      </form>
+      <a href="/pages/shop.html">Shop</a>
+      <a href="/pages/cart.html">Cart (<span id="cart-count" style="display:none;">0</span>)</a>
+    </nav>
+  </header>
+  
+  <main>
+    <h1>Checkout</h1>
+    <div style="max-width:600px; margin: 0 auto; background: var(--gray-light); padding:2rem; border-radius:8px;">
+      <form id="checkout-form">
+        <div class="form-group" id="email-group" style="display:none;">
+          <label>Email Address (Guest)</label>
+          <input type="email" id="email" placeholder="you@example.com">
+        </div>
+        <div class="form-group">
+          <label>Shipping Address</label>
+          <textarea id="address" rows="3" required minlength="5"></textarea>
+        </div>
+        <!-- Mock payment fields -->
+        <div class="form-group">
+          <label>Card Number</label>
+          <input type="text" placeholder="XXXX-XXXX-XXXX-XXXX" required>
+        </div>
+        <div style="display:flex; gap:1rem;">
+          <div class="form-group" style="flex:1;">
+            <label>Expiry</label>
+            <input type="text" placeholder="MM/YY" required>
+          </div>
+          <div class="form-group" style="flex:1;">
+            <label>CVC</label>
+            <input type="text" required>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%; margin-top:1rem;">Place Order</button>
+      </form>
+    </div>
+  </main>
+  
+  <script src="/js/api.js"></script>
+  <script src="/js/ui.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/cart.js"></script>
+  <script>
+    if (!localStorage.getItem('access_token')) {
+      document.getElementById('email-group').style.display = 'block';
+      document.getElementById('email').required = true;
+    }
+
+    document.getElementById('checkout-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const address = document.getElementById('address').value;
+      const email = document.getElementById('email').value;
+      const payment_token = 'tok_visa'; // Simulated success token
+      try {
+        ui.showLoader();
+        await api.checkout({ address, email: email || undefined, payment_token });
+        if (!localStorage.getItem('access_token')) {
+          await cartState.clear();
+        }
+        ui.showToast('Order placed successfully!');
+        setTimeout(() => {
+          if (localStorage.getItem('access_token')) {
+            window.location.href = '/pages/dashboard.html';
+          } else {
+            window.location.href = '/';
+          }
+        }, 1500);
+      } catch (err) {
+        ui.showToast(err.message, 'error');
+      } finally {
+        ui.hideLoader();
+      }
+    });
+  </script>
+</body>
+</html>

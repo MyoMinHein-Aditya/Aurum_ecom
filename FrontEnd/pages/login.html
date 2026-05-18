@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login - Aurum</title>
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <style>
+    .auth-container {
+      max-width: 400px;
+      margin: 4rem auto;
+      background: var(--gray-light);
+      padding: 2rem;
+      border-radius: 8px;
+    }
+    .auth-container h1 { text-align: center; }
+  </style>
+</head>
+<body class="fade-in">
+  <header>
+    <a href="/" class="logo">Aurum</a>
+    <nav>
+      <a href="/pages/shop.html">Shop</a>
+    </nav>
+  </header>
+  
+  <main>
+    <div class="auth-container">
+      <h1>Login</h1>
+      <form id="login-form">
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="email" required>
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="password" required>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%">Sign In</button>
+      </form>
+      <p style="text-align: center; margin-top: 1rem;">
+        Don't have an account? <a href="#" id="toggle-register" style="color: var(--gold)">Register</a>
+      </p>
+    </div>
+  </main>
+  
+  <script src="/js/api.js"></script>
+  <script src="/js/ui.js"></script>
+  <script>
+    let isLogin = true;
+    const form = document.getElementById('login-form');
+    const title = document.querySelector('h1');
+    const btn = form.querySelector('button');
+    const toggle = document.getElementById('toggle-register');
+    
+    toggle.addEventListener('click', (e) => {
+      e.preventDefault();
+      isLogin = !isLogin;
+      title.textContent = isLogin ? 'Login' : 'Register';
+      btn.textContent = isLogin ? 'Sign In' : 'Sign Up';
+      toggle.textContent = isLogin ? 'Register' : 'Login';
+    });
+    
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      
+      try {
+        ui.showLoader();
+        if (isLogin) {
+          const res = await api.login({ email, password });
+          localStorage.setItem('access_token', res.access_token);
+          const user = await api.getMe();
+          if (user.is_admin) {
+            window.location.href = '/pages/admin.html';
+          } else {
+            window.location.href = '/pages/dashboard.html';
+          }
+        } else {
+          await api.register({ email, password });
+          ui.showToast('Registration successful! Please login.');
+          toggle.click(); // switch back to login
+        }
+      } catch (err) {
+        ui.showToast(err.message, 'error');
+      } finally {
+        ui.hideLoader();
+      }
+    });
+  </script>
+</body>
+</html>

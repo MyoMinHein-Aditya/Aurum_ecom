@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Shop - Aurum</title>
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/pages.css">
+</head>
+<body class="fade-in">
+  <header>
+    <a href="/" class="logo">Aurum</a>
+    <nav>
+      <form class="search-bar" action="/pages/shop.html" method="GET">
+        <input type="text" name="q" placeholder="Search products..." required>
+        <button type="submit" style="background:transparent; border:none; color:var(--gold); cursor:pointer;">&#x1F50D;</button>
+      </form>
+      <a href="/pages/shop.html">Shop</a>
+      <a href="/pages/cart.html">Cart (<span id="cart-count" style="display:none;">0</span>)</a>
+      <a href="/pages/login.html" class="guest-link">Login</a>
+      <a href="/pages/dashboard.html" class="auth-link">Dashboard</a>
+      <a href="#" id="logout-btn" class="auth-link">Logout</a>
+    </nav>
+  </header>
+  
+  <main>
+    <h1>Our Collection</h1>
+    <div class="shop-layout">
+      <aside class="shop-sidebar">
+        <div class="form-group">
+          <label>Search</label>
+          <input type="text" id="search-input" placeholder="Search products...">
+        </div>
+      </aside>
+      
+      <section class="shop-main">
+        <div id="product-grid" class="product-grid">
+          <!-- Products injected here -->
+        </div>
+      </section>
+    </div>
+  </main>
+  
+  <!-- Quick View Modal -->
+  <div id="quick-view-modal" class="modal-overlay">
+    <div class="modal-content">
+      <button class="modal-close" id="close-modal">&times;</button>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+  
+  <script src="/js/api.js"></script>
+  <script src="/js/ui.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/cart.js"></script>
+  <script src="/js/shop.js"></script>
+</body>
+</html>

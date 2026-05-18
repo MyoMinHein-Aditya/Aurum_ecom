@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Product - Aurum</title>
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/pages.css">
+</head>
+<body class="fade-in">
+  <header>
+    <a href="/" class="logo">Aurum</a>
+    <nav>
+      <form class="search-bar" action="/pages/shop.html" method="GET">
+        <input type="text" name="q" placeholder="Search products..." required>
+        <button type="submit" style="background:transparent; border:none; color:var(--gold); cursor:pointer;">&#x1F50D;</button>
+      </form>
+      <a href="/pages/shop.html">Shop</a>
+      <a href="/pages/cart.html">Cart (<span id="cart-count" style="display:none;">0</span>)</a>
+      <a href="/pages/login.html" class="guest-link">Login</a>
+      <a href="/pages/dashboard.html" class="auth-link">Dashboard</a>
+      <a href="#" id="logout-btn" class="auth-link">Logout</a>
+    </nav>
+  </header>
+  
+  <main>
+    <div class="product-detail-layout" id="product-detail">
+      <!-- injected -->
+    </div>
+    
+    <div style="margin-top: 5rem;">
+      <h2>Recently Viewed</h2>
+      <!-- Mock recently viewed for now -->
+      <p style="color:var(--gray-text)">Your recently viewed items will appear here.</p>
+    </div>
+  </main>
+  
+  <script src="/js/api.js"></script>
+  <script src="/js/ui.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/cart.js"></script>
+  <script>
+    async function loadProduct() {
+      const params = new URLSearchParams(window.location.search);
+      const id = params.get('id');
+      if (!id) {
+        window.location.href = '/pages/shop.html';
+        return;
+      }
+      
+      try {
+        ui.showLoader();
+        const p = await api.getProduct(id);
+        const container = document.getElementById('product-detail');
+        const imgUrl = p.image_url || 'https://via.placeholder.com/600x600?text=Aurum';
+        
+        container.innerHTML = `
+          <div class="product-image">
+            <img src="${imgUrl}" alt="${p.name}">
+          </div>
+          <div class="product-info">
+            <h1>${p.name}</h1>
+            <p class="price">₹${p.price.toFixed(2)}</p>
+            <p style="font-size: 1.1rem; margin-bottom: 2rem;">${p.description}</p>
+            
+            <div style="margin-bottom:2rem;">
+              <label>Quantity</label>
+              <input type="number" id="qty" value="1" min="1" max="${p.stock}" style="width: 100px;">
+            </div>
+            
+            <button class="btn btn-primary" onclick="addToCartHandler(${p.id})">Add to Cart</button>
+            <button class="btn btn-outline" style="margin-left:1rem;">Add to Wishlist</button>
+            
+            <p style="margin-top:2rem; font-size:0.9rem; color:var(--gray-text)">Stock: ${p.stock > 0 ? 'In Stock' : 'Out of Stock'} (${p.stock} available)</p>
+          </div>
+        `;
+        document.title = `${p.name} - Aurum`;
+      } catch (err) {
+        ui.showToast('Failed to load product', 'error');
+      } finally {
+        ui.hideLoader();
+      }
+    }
+    
+    window.addToCartHandler = async (id) => {
+      const qty = parseInt(document.getElementById('qty').value) || 1;
+      await cartState.add(id, qty);
+    };
+    
+    document.addEventListener('DOMContentLoaded', loadProduct);
+  </script>
+</body>
+</html>

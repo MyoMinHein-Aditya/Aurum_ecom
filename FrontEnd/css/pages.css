@@ -1,0 +1,103 @@
+/*
+pages.css
+Specific layouts for pages.
+*/
+
+/* Shop Page Grid */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 2rem;
+}
+
+/* Sidebar layout */
+.shop-layout {
+  display: flex;
+  gap: 2rem;
+}
+
+.shop-sidebar {
+  width: 250px;
+  flex-shrink: 0;
+}
+
+.shop-main {
+  flex-grow: 1;
+}
+
+/* Product Detail */
+.product-detail-layout {
+  display: flex;
+  gap: 3rem;
+  align-items: flex-start;
+}
+.product-image {
+  flex: 1;
+  max-width: 50%;
+}
+.product-image img {
+  width: 100%;
+  border-radius: 8px;
+  object-fit: cover;
+}
+.product-info {
+  flex: 1;
+}
+.product-info h1 {
+  font-size: 2.5rem;
+}
+.product-info .price {
+  font-size: 1.5rem;
+  color: var(--gold);
+  margin-bottom: 1.5rem;
+}
+
+/* Cart Page */
+.cart-layout {
+  display: flex;
+  gap: 3rem;
+}
+.cart-items {
+  flex: 2;
+}
+.cart-summary {
+  flex: 1;
+  background: var(--gray-light);
+  padding: 2rem;
+  border-radius: 8px;
+  align-self: flex-start;
+}
+.cart-item-row {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--gray-mid);
+  align-items: center;
+}
+.cart-item-row img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+.item-details {
+  flex-grow: 1;
+}
+.item-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .shop-layout, .product-detail-layout, .cart-layout {
+    flex-direction: column;
+  }
+  .shop-sidebar {
+    width: 100%;
+  }
+  .product-image {
+    max-width: 100%;
+  }
+}

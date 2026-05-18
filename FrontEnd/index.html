@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aurum - Luxury E-Commerce</title>
+  <meta name="description" content="Discover luxury products at Aurum.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <style>
+    /* Hero Section */
+    .hero {
+      background: var(--gold-light);
+      padding: 6rem 2rem;
+      text-align: center;
+      border-radius: 8px;
+      margin-bottom: 4rem;
+    }
+    .hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .hero p {
+      font-size: 1.25rem;
+      color: var(--gray-text);
+      max-width: 600px;
+      margin: 0 auto 2rem;
+    }
+    .featured {
+      text-align: center;
+    }
+  </style>
+</head>
+<body class="fade-in">
+  <header>
+    <a href="/" class="logo">Aurum</a>
+    <nav>
+      <form class="search-bar" action="/pages/shop.html" method="GET">
+        <input type="text" name="q" placeholder="Search products..." required>
+        <button type="submit" style="background:transparent; border:none; color:var(--gold); cursor:pointer;">&#x1F50D;</button>
+      </form>
+      <a href="/pages/shop.html">Shop</a>
+      <a href="/pages/cart.html">Cart (<span id="cart-count" style="display:none;">0</span>)</a>
+      <a href="/pages/login.html" class="guest-link">Login</a>
+      <a href="/pages/dashboard.html" class="auth-link">Dashboard</a>
+      <a href="#" id="logout-btn" class="auth-link">Logout</a>
+    </nav>
+  </header>
+  
+  <main>
+    <section class="hero">
+      <h1>Elegance Redefined.</h1>
+      <p>Discover our curated collection of luxury items designed to elevate your everyday lifestyle.</p>
+      <a href="/pages/shop.html" class="btn btn-primary">Shop Collection</a>
+    </section>
+    
+    <section class="featured">
+      <h2>Featured Products</h2>
+      <!-- We will just link to shop for now -->
+      <p><a href="/pages/shop.html" class="btn btn-outline">View All</a></p>
+    </section>
+  </main>
+  
+  <script src="/js/api.js"></script>
+  <script src="/js/ui.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/cart.js"></script>
+</body>
+</html>
