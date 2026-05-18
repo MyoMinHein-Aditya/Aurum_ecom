@@ -5,7 +5,6 @@ A SaaS luxury e-commerce platform built with FastAPI and Vanilla JS/HTML/CSS.
 ## Features
 - Complete shopping flow: product browsing, cart, and checkout.
 - Persistent database-backed cart.
-- JWT-based Authentication with refresh tokens.
 - Secure, protected Admin Dashboard.
 - Clean, luxury aesthetic with custom UI components.
 - Secure by default (rate limiting, secure headers, CORS, etc.).
@@ -13,13 +12,6 @@ A SaaS luxury e-commerce platform built with FastAPI and Vanilla JS/HTML/CSS.
 ## User & Admin Roles
 - **Default Users**: Can browse the shop, view products, manage their cart, and place orders.
 - **Admin Users**: Have access to the Admin Dashboard to manage products and fulfill orders.
-
-### Admin Login
-The initial admin account is:
-- **Email:** `aditya.bajoria0208@gmail.com`
-- **Password:** `ABC@123`
-
-Logging in with these credentials will automatically redirect you to the Admin Dashboard.
 
 ### Managing Products
 As an admin, you can:
