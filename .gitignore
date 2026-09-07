@@ -5,3 +5,9 @@ __pycache__
 .env.development
 .env.production
 venv_310
+.pytest_cache
+test.db
+tests/__pycache__
+tests/conftest.py
+tests/test_auth.py
+tests/test_orders.py

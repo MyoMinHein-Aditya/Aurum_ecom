@@ -32,7 +32,6 @@
           <label>Shipping Address</label>
           <textarea id="address" rows="3" required minlength="5"></textarea>
         </div>
-        <!-- Mock payment fields -->
         <div class="form-group">
           <label>Card Number</label>
           <input type="text" placeholder="XXXX-XXXX-XXXX-XXXX" required>
@@ -66,7 +65,7 @@
       e.preventDefault();
       const address = document.getElementById('address').value;
       const email = document.getElementById('email').value;
-      const payment_token = 'tok_visa'; // Simulated success token
+      const payment_token = 'tok_visa';
       try {
         ui.showLoader();
         await api.checkout({ address, email: email || undefined, payment_token });

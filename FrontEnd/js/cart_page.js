@@ -1,13 +1,10 @@
-/**
- * cart_page.js
- */
 async function renderCart() {
   const list = document.getElementById('cart-items-list');
   const totalEl = document.getElementById('cart-total');
   
   try {
     ui.showLoader();
-    await cartState.fetch(); // Ensure state is fresh
+    await cartState.fetch();
     list.innerHTML = '';
     
     if (cartState.items.length === 0) {
