@@ -37,7 +37,7 @@ As an admin, you can:
 
 ## How to Run
 ```bash
-uvicorn BackEnd.main:app --reload
+uvicorn api.main:app --reload
 ```
 Then navigate to `http://localhost:8000` in your browser.
 

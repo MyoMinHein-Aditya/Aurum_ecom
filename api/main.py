@@ -1,7 +1,4 @@
-"""
-main.py
-FastAPI entry point, mounts static files, registers routers, adds middlewares.
-"""
+
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
