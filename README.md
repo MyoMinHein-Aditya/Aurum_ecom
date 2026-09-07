@@ -2,6 +2,14 @@
 
 A SaaS luxury e-commerce platform built with FastAPI and Vanilla JS/HTML/CSS.
 
+## Project Structure
+```text
+api/       FastAPI application, routes, services, models, and database access
+frontend/  Static storefront pages, JavaScript, and CSS
+data/      Local SQLite database files
+tests/     API integration tests
+```
+
 ## Features
 - Complete shopping flow: product browsing, cart, and checkout.
 - Persistent database-backed cart.
@@ -32,8 +40,11 @@ As an admin, you can:
 3. The order status updates to `DELIVERED`, which immediately reflects on the user's personal dashboard as well!
 
 ## Installation
-1. `pip install -r requirements.txt`
-2. Copy `.env.example` to `.env` and fill in your secrets.
+1. Install Python 3.12.
+2. Create an environment: `py -3.12 -m venv .venv`
+3. Activate it: `.venv\Scripts\activate`
+4. Install dependencies: `python -m pip install -r requirements.txt`
+5. Copy `.env.example` to `.env` and fill in your secrets.
 
 ## How to Run
 ```bash

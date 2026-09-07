@@ -1,8 +1,3 @@
-/**
- * auth.js
- * Auth state management.
- */
-
 window.auth = {
   init: () => {
     const token = localStorage.getItem('access_token');
