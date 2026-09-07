@@ -1,6 +1,3 @@
-/**
- * shop.js
- */
 let debounceTimer;
 
 async function loadProducts(search = '') {
@@ -17,7 +14,6 @@ async function loadProducts(search = '') {
     products.forEach(p => {
       const card = document.createElement('div');
       card.className = 'product-card';
-      // Use placeholder if no image
       const imgUrl = p.image_url || 'https://via.placeholder.com/260x250?text=Aurum';
       card.innerHTML = `
         <img src="${imgUrl}" alt="${p.name}">

@@ -1,8 +1,3 @@
-/**
- * api.js
- * Centralized fetch wrappers.
- */
-
 const API_BASE = '/api/v1';
 
 async function fetchAPI(endpoint, options = {}) {
@@ -67,7 +62,6 @@ window.api = {
   },
   getOrders: () => fetchAPI('/orders/'),
   
-  // Admin Endpoints
   getDashboard: () => fetchAPI('/admin/dashboard'),
   getAllOrdersAdmin: () => fetchAPI('/admin/orders'),
   updateOrderStatus: (id, status) => fetchAPI(`/admin/orders/${id}/status`, { method: 'PUT', body: JSON.stringify({ status }) }),

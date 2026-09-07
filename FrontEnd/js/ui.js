@@ -1,8 +1,3 @@
-/**
- * ui.js
- * Toast messages, loaders, and DOM helpers.
- */
-
 window.ui = {
   showToast: (message, type = 'info') => {
     let container = document.getElementById('toast-container');

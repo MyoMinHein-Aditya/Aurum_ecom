@@ -1,8 +1,3 @@
-/**
- * cart.js
- * Cart state and helper functions.
- */
-
 window.cartState = {
   items: [],
   

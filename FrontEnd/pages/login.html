@@ -80,7 +80,7 @@
         } else {
           await api.register({ email, password });
           ui.showToast('Registration successful! Please login.');
-          toggle.click(); // switch back to login
+          toggle.click();
         }
       } catch (err) {
         ui.showToast(err.message, 'error');
