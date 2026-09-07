@@ -44,5 +44,22 @@ uvicorn api.main:app --reload
 ```
 Then navigate to `http://localhost:8000` in your browser.
 
+## Deployment
+The frontend API client uses the deployed backend at:
+
+```text
+https://aurum-ecom-backend.vercel.app/api/v1
+```
+
+The backend allows requests from the deployed frontend at:
+
+```text
+https://aurum-ecom.vercel.app
+```
+
+Update both URLs in `FrontEnd/js/api.js` and `api/main.py` if the deployment URLs change.
+
 ## Environment Variables
 See `.env.example` for details.
+
+The deployed backend also uses `Backend_URL` in `.env` for its public Vercel hostname.
