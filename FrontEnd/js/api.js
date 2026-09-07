@@ -1,4 +1,4 @@
-const API_BASE = '/api/v1';
+const API_BASE = 'https://aurum-ecom-backend.vercel.app/api/v1';
 
 async function fetchAPI(endpoint, options = {}) {
   const token = localStorage.getItem('access_token');

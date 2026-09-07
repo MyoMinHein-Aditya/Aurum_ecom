@@ -36,7 +36,10 @@ async def global_exception_handler(request: Request, exc: Exception):
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:8000"],
+    allow_origins=[
+        "http://localhost:8000",
+        "https://aurum-ecom.vercel.app",
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
